@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'SilkaMono';
     src: url('../fonts/silkamono-regular-italic.woff2') format('woff2');
-    font-weight:bold;
+    font-weight:normal;
     font-style:normal;
   }
   body {
