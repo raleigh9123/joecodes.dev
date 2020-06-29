@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: 'SilkaMono';
-    src: url('../fonts/silkamono-regular-italic.woff2') format('woff2');
+    src: url('../fonts/silkamono-medium-italic.woff2') format('woff2');
     font-weight:normal;
     font-style:normal;
   }
@@ -77,7 +77,6 @@ const lightTheme = {
   links: "black",
   linksHover: "#376df9",
 };
-
 const SwitchContainer = styled.div`
   position: fixed;
   color: ${props => props.theme.background};

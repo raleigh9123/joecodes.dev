@@ -40,8 +40,8 @@ class RootIndex extends React.Component {
           <Helmet title={siteTitle} />
           <Hero data={author.node} />
           <Wrapper>
-            <SectionHeadline className="section-headline">Recent articles</SectionHeadline>
-            <ArticleList className="article-list">
+            <SectionHeadline >Recent articles</SectionHeadline>
+            <ArticleList >
               {posts.map(({ node }) => {
                 return (
                   <li key={node.slug}>

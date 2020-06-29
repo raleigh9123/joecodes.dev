@@ -26,7 +26,7 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: "JoeCodes",
-    description: "A portfolio of my projects",
+    description: "Full-Stack Web Developer",
     author: "Joseph Butterfield",
   },
   plugins: [
@@ -45,5 +45,20 @@ module.exports = {
         path: `${__dirname}/src/fonts/`
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `JoeCodes`,
+        short_name: `JoeCodes`,
+        start_url: `/`,
+        background_color: `#16171d`,
+        theme_color: `#48bfe3ff`,
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: `standalone`,
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+      },
+    },
+      `gatsby-plugin-offline`,
   ],
 };

@@ -15,9 +15,9 @@ export default ({ article }) => (
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
     </PreviewTitle>
     <small>{article.publishDate}</small>
-    <p
+    <div
       dangerouslySetInnerHTML={{
-        __html: article.description.childMarkdownRemark.html,
+        __html: `<div>${article.description.childMarkdownRemark.html}</div>`
       }}
     />
   </div>
