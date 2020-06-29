@@ -16,13 +16,10 @@ const NavigationItem = styled.li`
   display: inline-flex;
   align-items: center;
   margin: 0 1em;
-  a {
-    color: currentColor;
-  }
 `
 export default () => (
   <nav role="navigation">
-    <Navigation>
+    <Navigation >
       <NavigationItem>
         <Link to="/">Home</Link>
       </NavigationItem>

@@ -8,6 +8,26 @@ import Hero from '../components/hero'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 
+const Wrapper = styled.div`
+  width: calc(100% - 10vmin);
+  margin: 0 auto;
+  padding: 5vmin 0;
+  background-color:inherit;
+`
+const ArticleList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 5vmin;
+`
+const SectionHeadline = styled.h2`
+  padding: 0 0 0.4em 0;
+  margin: 0 0 5vmin 0;
+  border-bottom: 1px solid #ddd;
+`
+
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
@@ -16,12 +36,12 @@ class RootIndex extends React.Component {
 
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: "#fff" }}>
+        <div >
           <Helmet title={siteTitle} />
           <Hero data={author.node} />
-          <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
+          <Wrapper>
+            <SectionHeadline className="section-headline">Recent articles</SectionHeadline>
+            <ArticleList className="article-list">
               {posts.map(({ node }) => {
                 return (
                   <li key={node.slug}>
@@ -29,8 +49,8 @@ class RootIndex extends React.Component {
                   </li>
                 );
               })}
-            </ul>
-          </div>
+            </ArticleList>
+          </Wrapper>
         </div>
       </Layout>
     );

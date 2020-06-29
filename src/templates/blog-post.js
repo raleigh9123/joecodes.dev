@@ -3,9 +3,33 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
 import Layout from '../components/layout'
 
-import heroStyles from '../components/hero.module.css'
+const Hero = styled.div`
+  position: relative;
+  background: #000;
+  color: #fff;
+  text-align: center;
+`
+const HeroImg = styled(Img)`
+   /*
+    Ensure golden ratio for the hero size while limiting it to some extend to
+    the viewport width
+  */
+  height: 61.8vh;
+  max-height: 400px;
+`
+const Wrapper = styled.div`
+  width: calc(100% - 10vmin);
+  margin: 0 auto;
+  padding: 5vmin 0;
+`
+const SectionHeadline = styled.h1`
+  padding: 0 0 0.4em 0;
+  margin: 0 0 5vmin 0;
+  border-bottom: 1px solid #ddd;
+`
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -16,15 +40,14 @@ class BlogPostTemplate extends React.Component {
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
           <Helmet title={`${post.title} | ${siteTitle}`} />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
+          <Hero >
+            <HeroImg
               alt={post.title}
               fluid={post.heroImage.fluid}
             />
-          </div>
-          <div className="wrapper">
-            <h1 className="section-headline">{post.title}</h1>
+          </Hero>
+          <Wrapper >
+            <SectionHeadline className="section-headline">{post.title}</SectionHeadline>
             <p
               style={{
                 display: 'block',
@@ -37,7 +60,7 @@ class BlogPostTemplate extends React.Component {
                 __html: post.body.childMarkdownRemark.html,
               }}
             />
-          </div>
+          </Wrapper>
         </div>
       </Layout>
     )

@@ -1,0 +1,21 @@
+@font-face {
+  font-family: SilkaMono;
+  font-weight: 300;
+  font-style: normal;
+  src: url("silkamono-extralight.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: SilkaMono;
+  font-weight: 500;
+  font-style: normal;
+  src: url("silkamono-light.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: SilkaMono;
+  font-weight: 700;
+  font-style: normal;
+  src: url("silkamono-regular.woff2") format("woff2");
+  font-display: swap;
+}
