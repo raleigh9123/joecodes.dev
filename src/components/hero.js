@@ -33,6 +33,10 @@ const HeroDetails = styled.div`
 `
 const HeroHeadline = styled.h3`
   margin: 0;
+  color:white;
+  font-weight:bold;
+  padding: 30px 0;
+  letter-spacing:.1rem;
 `
 const heroTitle = styled.p`
   margin: 0;

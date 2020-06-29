@@ -7,29 +7,29 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'SilkaMono';
     src: url('../fonts/silkamono-extralight.woff2') format('woff2');
-    font-weight:300;
+    font-weight:200;
     font-style:normal;
   }
   @font-face {
     font-family: 'SilkaMono';
     src: url('../fonts/silkamono-light.woff2') format('woff2');
-    font-weight:500;
+    font-weight:400;
     font-style:normal;
   }
   @font-face {
     font-family: 'SilkaMono';
     src: url('../fonts/silkamono-regular.woff2') format('woff2');
-    font-weight:700;
+    font-weight:600;
     font-style:normal;
   }
   @font-face {
     font-family: 'SilkaMono';
     src: url('../fonts/silkamono-regular-italic.woff2') format('woff2');
-    font-weight:normal;
+    font-weight:bold;
     font-style:normal;
   }
   body {
-    font: 400 1em SilkaMono, sans-seriff;
+    font: 200 1em SilkaMono, sans-seriff;
     /* font-size: 1em;
     line-height: 1.65; */
     color: ${(props) => props.theme.text};
@@ -73,7 +73,7 @@ const darkTheme = {
 const lightTheme = {
   text: "black",
   background: "white",
-  headings: "white",
+  headings: "#16171b",
   links: "black",
   linksHover: "#376df9",
 };
