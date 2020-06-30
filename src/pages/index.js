@@ -4,8 +4,10 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
-import Hero from '../components/hero'
 import Layout from '../components/layout'
+
+import Landing from '../components/landing'
+import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 
 const Wrapper = styled.div`
@@ -38,7 +40,8 @@ class RootIndex extends React.Component {
       <Layout location={this.props.location}>
         <div >
           <Helmet title={siteTitle} />
-          <Hero data={author.node} />
+          {/* <Hero data={author.node} /> */}
+          <Landing />
           <Wrapper>
             <SectionHeadline >Recent articles</SectionHeadline>
             <ArticleList >

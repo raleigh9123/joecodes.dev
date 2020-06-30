@@ -28,10 +28,16 @@ const GlobalStyle = createGlobalStyle`
     font-weight:normal;
     font-style:normal;
   }
+  html {
+    font-size:15px;
+    @media screen and (min-width: 400px) {
+      font-size:18px;
+    }
+  }
   body {
-    font: 200 1em SilkaMono, sans-seriff;
-    /* font-size: 1em;
-    line-height: 1.65; */
+    font-family: SilkaMono, sans-seriff;
+    font-weight:200;
+    line-height: 1.3;
     color: ${(props) => props.theme.text};
     background:${(props) => props.theme.background};
     margin: 0;
@@ -45,8 +51,25 @@ const GlobalStyle = createGlobalStyle`
   h2,
   h3 {
     color:${props => props.theme.headings};
-    font-size: 2em;
     font-weight: normal;
+  }
+  h1 {
+    font-size: 2.488rem;
+  }
+  h2 {
+    font-size: 2.075rem;
+  }
+  h3 {
+    font-size: 1.728rem;
+  }
+  h4 {
+    font-size: 1.44rem;
+  }
+  h5 {
+    font-size: 1.2rem;
+  }
+  p, h6 {
+    font-size: 1rem;
   }
   a {
     color: ${props => props.theme.links};
@@ -69,13 +92,21 @@ const darkTheme = {
   headings: "white",
   links: "white",
   linksHover: "#376df9",
+  landingBorderColor: "white",
+  landingBackground: "linear-gradient( 45deg, rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
+  landingTextBackground: "rgba(0, 0, 0, 0.2)",
+  landingTextBoxShadow: "-5px 3px 9px white",
 };
 const lightTheme = {
   text: "black",
-  background: "white",
+  background: "#F5F5F5",
   headings: "#16171b",
   links: "black",
   linksHover: "#376df9",
+  landingBorderColor: "black",
+  landingBackground: "linear-gradient( 45deg, rgba(245,245,245, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
+  landingTextBackground: "rgba(255,255,255, 0.2)",
+  landingTextBoxShadow: "-5px 3px 9px black",
 };
 const SwitchContainer = styled.div`
   position: fixed;
