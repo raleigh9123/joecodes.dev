@@ -41,7 +41,6 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.text};
     background:${(props) => props.theme.background};
     margin: 0;
-    transition: all 0.15s ease-out;
   }
   img {
     display: block;
@@ -92,7 +91,7 @@ const darkTheme = {
   headings: "white",
   links: "white",
   linksHover: "#376df9",
-  landingBorderColor: "white",
+  borderColor: "white",
   landingBackground: "linear-gradient( 45deg, rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
   landingTextBackground: "rgba(0, 0, 0, 0.2)",
   landingTextBoxShadow: "-5px 3px 9px white",
@@ -103,7 +102,7 @@ const lightTheme = {
   headings: "#16171b",
   links: "black",
   linksHover: "#376df9",
-  landingBorderColor: "black",
+  borderColor: "black",
   landingBackground: "linear-gradient( 45deg, rgba(245,245,245, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
   landingTextBackground: "rgba(255,255,255, 0.2)",
   landingTextBoxShadow: "-5px 3px 9px black",

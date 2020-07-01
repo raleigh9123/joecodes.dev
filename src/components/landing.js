@@ -1,25 +1,27 @@
 import React from "react";
-import { Link } from "gatsby";
 import { withTheme } from 'styled-components'
 
-import Img from "gatsby-image";
 import styled from "styled-components";
 
 const LandingContainer = styled.div`
   display: grid;
-  border: 1px solid ${props => props.theme.landingBorderColor} ;
+  border: 1px solid ${props => props.theme.borderColor} ;
   border-width: 1px 0;
   width: 100vw;
   height: 90vh;
-  justify-items: start;
+  justify-items: center;
   align-content: center;
   gap: 3vh;
   grid-template-rows: . repeat(4, 1fr) .;
+  @media screen and (min-width:1000px) {
+    justify-items: start;
+  }
   & > * {
     z-index: 10;
     background-color: ${props => props.theme.landingTextBackground};
     text-align: left;
-    margin: 0 3vh;
+    justify-self:left;
+    margin: 0 10vw;
     box-shadow: ${props => props.theme.landingTextBoxShadow};
     border-radius:2px;
     padding: 0 1vw;
@@ -44,7 +46,7 @@ const Landing = (props) => (
       <span>Butterfield</span>
     </h1>
     <h4>Full-Stack Web Developer</h4>
-    <h6>Digital Space For Small Business</h6>
+    <h6> — Reaching Digital Space — </h6>
   </LandingContainer>
 );
 

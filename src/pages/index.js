@@ -2,17 +2,15 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 
 import Layout from '../components/layout'
 
 import Landing from '../components/landing'
-import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 
 const Wrapper = styled.div`
-  width: calc(100% - 10vmin);
-  margin: 0 auto;
+  margin: 0 10vw;
   padding: 5vmin 0;
   background-color:inherit;
 `
@@ -27,14 +25,14 @@ const ArticleList = styled.ul`
 const SectionHeadline = styled.h2`
   padding: 0 0 0.4em 0;
   margin: 0 0 5vmin 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid;
+  border-color: ${props => props.theme.borderColor};
 `
 
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
 
     return (
       <Layout location={this.props.location}>
@@ -60,7 +58,7 @@ class RootIndex extends React.Component {
   }
 }
 
-export default RootIndex
+export default withTheme(RootIndex)
 
 export const pageQuery = graphql`
   query HomeQuery {
