@@ -39,13 +39,6 @@ module.exports = {
       options: contentfulConfig,
     },
     {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "fonts",
-        path: `${__dirname}/src/fonts/`
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `JoeCodes`,
@@ -59,6 +52,13 @@ module.exports = {
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
-      `gatsby-plugin-offline`,
+    // Necessary for Gatsby Image to work and relative image file paths
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 };

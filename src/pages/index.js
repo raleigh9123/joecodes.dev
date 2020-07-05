@@ -1,38 +1,37 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
-import styled, { withTheme } from 'styled-components'
+import React from "react"
+import { graphql } from "gatsby"
+import get from "lodash/get"
+import Helmet from "react-helmet"
 
-import Layout from '../components/layout'
+import Layout from "../components/layout"
 
-import Landing from '../components/landing'
-import ArticlePreview from '../components/article-preview'
+import Landing from "../components/homepage/landing"
+import About from "../components/homepage/about-home"
+// import ArticlePreview from "../components/homepage/article-preview"
 
-const Wrapper = styled.div`
-  margin: 0 10vw;
-  padding: 5vmin 0;
-  background-color:inherit;
-`
-const ArticleList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 5vmin;
-`
-const SectionHeadline = styled.h2`
-  padding: 0 0 0.4em 0;
-  margin: 0 0 5vmin 0;
-  border-bottom: 1px solid;
-  border-color: ${props => props.theme.borderColor};
-`
+// const Wrapper = styled.div`
+//   margin: 0 10vw;
+//   padding: 5vmin 0;
+// `
+// const ArticleList = styled.ul`
+//   margin: 0;
+//   padding: 0;
+//   list-style: none;
+//   display: grid;
+//   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+//   grid-gap: 5vmin;
+// `
+// const SectionHeadline = styled.h2`
+//   padding: 0 0 0.4em 0;
+//   margin: 0 0 5vmin 0;
+//   border-bottom: 1px solid;
+//   border-color: ${props => props.theme.borderColor};
+// `
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+    const siteTitle = get(this, "props.data.site.siteMetadata.title")
+    // const posts = get(this, "props.data.allContentfulBlogPost.edges")
 
     return (
       <Layout location={this.props.location}>
@@ -40,7 +39,8 @@ class RootIndex extends React.Component {
           <Helmet title={siteTitle} />
           {/* <Hero data={author.node} /> */}
           <Landing />
-          <Wrapper>
+          <About />
+          {/* <Wrapper>
             <SectionHeadline >Recent articles</SectionHeadline>
             <ArticleList >
               {posts.map(({ node }) => {
@@ -51,14 +51,14 @@ class RootIndex extends React.Component {
                 );
               })}
             </ArticleList>
-          </Wrapper>
+          </Wrapper> */}
         </div>
       </Layout>
     );
   }
 }
 
-export default withTheme(RootIndex)
+export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {

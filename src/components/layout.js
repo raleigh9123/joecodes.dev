@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import React, { useState } from "react"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 
-import Navigation from './navigation'
+import Navigation from "./layout/navigation"
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'SilkaMono';
-    src: url('../fonts/silkamono-extralight.woff2') format('woff2');
+    font-family: "SilkaMono";
+    src: url("../fonts/silkamono-extralight.woff2") format("woff2");
     font-weight:200;
     font-style:normal;
   }
   @font-face {
-    font-family: 'SilkaMono';
-    src: url('../fonts/silkamono-light.woff2') format('woff2');
+    font-family: "SilkaMono";
+    src: url("../fonts/silkamono-light.woff2") format("woff2");
     font-weight:400;
     font-style:normal;
   }
   @font-face {
-    font-family: 'SilkaMono';
-    src: url('../fonts/silkamono-regular.woff2') format('woff2');
+    font-family: "SilkaMono";
+    src: url("../fonts/silkamono-regular.woff2") format("woff2");
     font-weight:600;
     font-style:normal;
   }
   @font-face {
-    font-family: 'SilkaMono';
-    src: url('../fonts/silkamono-medium-italic.woff2') format('woff2');
+    font-family: "SilkaMono";
+    src: url("../fonts/silkamono-extralight-italic.woff2") format("woff2");
     font-weight:normal;
-    font-style:normal;
+    font-style:italic;
   }
   html {
     font-size:15px;
@@ -49,8 +49,11 @@ const GlobalStyle = createGlobalStyle`
   h1,
   h2,
   h3 {
-    color:${props => props.theme.headings};
+    color:${(props) => props.theme.headings};
     font-weight: normal;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin: initial;
   }
   h1 {
     font-size: 2.488rem;
@@ -70,20 +73,19 @@ const GlobalStyle = createGlobalStyle`
   p, h6 {
     font-size: 1rem;
   }
+  p {
+    letter-spacing: -.05rem;
+  }
   a {
-    color: ${props => props.theme.links};
+    color: ${(props) => props.theme.links};
     transition: .15s ease-out all;
   }
   a:hover, a:focus {
-    color: ${props => props.theme.linksHover};
+    color: ${(props) => props.theme.linksHover};
     transition: .15s ease-in all;
   }
 
-`
-const Container = styled.div`
-  max-width:1180;
-  margin: '0 auto';
-`
+`;
 const darkTheme = {
   text: "#f7f7f7",
   secondaryText: "#959cb1",
@@ -92,9 +94,9 @@ const darkTheme = {
   links: "white",
   linksHover: "#376df9",
   borderColor: "white",
+  boxShadow: "-4px 5px 10px 3px rgba(255,255,255,0.8)",
   landingBackground: "linear-gradient( 45deg, rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
   landingTextBackground: "rgba(0, 0, 0, 0.2)",
-  landingTextBoxShadow: "-5px 3px 9px white",
 };
 const lightTheme = {
   text: "black",
@@ -103,9 +105,9 @@ const lightTheme = {
   links: "black",
   linksHover: "#376df9",
   borderColor: "black",
+  boxShadow: "-4px 5px 10px 3px rgba(0,0.0,0.8)",
   landingBackground: "linear-gradient( 45deg, rgba(245,245,245, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
   landingTextBackground: "rgba(255,255,255, 0.2)",
-  landingTextBoxShadow: "-5px 3px 9px black",
 };
 const SwitchContainer = styled.div`
   position: fixed;
@@ -120,6 +122,7 @@ const SwitchContainer = styled.div`
   border-color: ${props => props.theme.color};
   border-radius: 5px;
   text-align:center;
+  z-index:100;
 `;
 const SwitchInput = styled.label`
   position: relative;
@@ -157,7 +160,7 @@ const Slider = styled.span`
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
+  /* -webkit-transition: .4s; */
   transition: .4s;
   border-radius: 34px;
   }
@@ -178,20 +181,21 @@ const Slider = styled.span`
 
 const Template = ({ children }) => {
 
-    const [ theme, setTheme ] = useState('dark');
+    const [ theme, setTheme ] = useState("dark");
     const themeToggler = () => {
-      theme === 'light' ? setTheme('dark') : setTheme('light')
+      theme === "light" ? setTheme("dark") : setTheme("light")
     }
 
     return (
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <React.Fragment>
           <GlobalStyle />
-          <Container>
-            <Navigation />
+          <Navigation />
+          <div>
             {children}
-          </Container>
+          </div>
         </React.Fragment>
+        {/* Toggle Container to later be added to footer */}
         <SwitchContainer>
           <p>Dark/Light</p>
           <SwitchInput>
