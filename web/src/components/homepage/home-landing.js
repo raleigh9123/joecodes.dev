@@ -5,12 +5,11 @@ import styled from "styled-components";
 
 const LandingContainer = styled.div`
   display: grid;
-  border-bottom: 1px solid ${(props) => props.theme.borderColor};
+  border-bottom: 1px solid ${(props) => props.theme.borderPrimary};
   width: 100vw;
   height: 90vh;
   justify-items: center;
   align-content: center;
-  margin-top:10vh;
   gap: 3vh;
   @media screen and (min-width:1000px) {
     justify-items: start;
@@ -20,7 +19,7 @@ const LandingContainer = styled.div`
     text-align: left;
     justify-self:left;
     margin: 0 10vw;
-    box-shadow: ${props => props.theme.boxShadow};
+    box-shadow: ${(props) => props.theme.boxShadow};
     border-radius:0 0 0 2px;
     padding: 0 1vw;
     @media screen and (min-width:1200px) {
@@ -34,13 +33,14 @@ const LandingContainer = styled.div`
     left: 0;
     height: 90vh;
     width: 100vw;
-    background-image: ${props => props.theme.landingBackground}
-  }
+    background-image: linear-gradient( 45deg, ${(props) =>
+      props.theme.landingBackground});
+  };
 `;
 
 const Landing = (props) => (
   <LandingContainer className="container">
-    <p>joecodes.dev</p>
+    <p>joecodes.io</p>
     <h1>
       <span>Joseph</span>
       <br />

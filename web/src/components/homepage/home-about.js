@@ -5,7 +5,7 @@ import styled, { withTheme } from "styled-components"
 import Img from "gatsby-image"
 
 const Wrapper = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.borderColor};
+  border-bottom: 1px solid ${(props) => props.theme.borderPrimary};
 `
 const AboutContainer = styled.div`
   display: grid;
@@ -46,7 +46,7 @@ const ContentContainer = styled.div`
     }
 
     transition: color .15s ease 0s, border .15s ease .1s;
-    border-bottom: 1px solid ${(props) => props.theme.borderColor};
+    border-bottom: 1px solid ${(props) => props.theme.borderPrimary};
     }
   }
   div a:hover {

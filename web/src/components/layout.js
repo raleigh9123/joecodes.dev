@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { createGlobalStyle, ThemeProvider } from "styled-components"
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components"
 import CircleLoader from 'react-spinners/CircleLoader'
 
 import Navigation from "./layout/navigation"
@@ -70,27 +70,34 @@ const darkTheme = {
   text: "#f7f7f7",
   secondaryText: "#959cb1",
   background: "#16171b",
-  secondaryBackground: "#F5F5F5",
+  secondaryBackground: "#121214",
   headings: "white",
   links: "white",
   linksHover: "#376df9",
-  borderColor: "white",
+  borderPrimary: "white",
   boxShadow: "-13px 11px 10px -8px rgba(255,255,255,0.8)",
-  landingBackground: "linear-gradient( 45deg, rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
+  boxShadowHighlight: "-13px 11px 10px -8px rgba(72, 191, 227,0.8)",
+  textShadow: "1px 2px 1px rgba(0,0,0,0.6)",
+  landingBackground: "rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%",
   landingTextBackground: "rgba(0, 0, 0, 0.2)",
 };
 const lightTheme = {
   text: "black",
-  background: "#F5F5F5",
-  secondaryBackground: "#16171b",
+  background: "#F9F9F9",
+  secondaryBackground: "white",
   headings: "#16171b",
   links: "black",
   linksHover: "#376df9",
-  borderColor: "black",
+  borderPrimary: "black",
   boxShadow: "-13px 11px 10px -8px rgba(0,0,0,0.8)",
-  landingBackground: "linear-gradient( 45deg, rgba(245,245,245, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%)",
+  boxShadowHighlight: "-13px 11px 10px -8px rgba(105, 48, 195,0.8)",
+  textShadow: "1px 2px 2px rgba(255,255,255,0.6)",
+  landingBackground: "rgba(245,245,245, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%",
   landingTextBackground: "rgba(255,255,255, 0.2)",
 };
+const Children = styled.div`
+  margin-top: 10vh;
+`;
 
 
 const PageLayout = ({ children }) => {
@@ -127,7 +134,9 @@ const PageLayout = ({ children }) => {
             <React.Fragment>
               <GlobalStyle />
               <Navigation />
-              <div>{children}</div>
+              <Children>
+                {children}
+              </Children>
               <Footer />
               <ThemeToggle themeToggle={themeToggler} />
             </React.Fragment>

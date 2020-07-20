@@ -4,18 +4,20 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 const Wrapper = styled.div`
-  border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-bottom: 1px solid ${props => props.theme.borderPrimary};
 `
 const ProjectsContainer = styled.div`
+  display:grid;
   h3 {
     display:grid;
     justify-items:center;
     margin:5vh auto 2vh auto;
   }
-  ul {
+  & > ul {
     margin: auto 15vw;
     padding:0;
     display:grid;
+    justify-self:center;
     justify-items:center;
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -26,40 +28,76 @@ const ProjectsContainer = styled.div`
     justify-self:start;
   }
 `;
-const ProjectWrapper = styled.div`
-  margin: 2vh 10vw 5vh 10vw;
-  display: grid;
-  grid-template-columns: auto;
-  z-index: 10;
+const Cards = styled.div`
+  display:flex;
+  margin: 2vh 0;
+  padding: 2rem 0 ;
+  overflow-x:scroll;
+  max-width:100vw;
 `;
-const ProjectCard = styled.div`
-  padding: 2vh 0;
-  justify-items: center;
-  align-content: center;
+const Card = styled.div`
+  border-radius: 1rem;
+  & > *:not(:first-child) {
+    padding: 1vh 1vw;
+  }
+  flex: 10 0 75vw;
+  margin: 0 2vw;
+  background-color: ${(props) => props.theme.secondaryBackground};
+  border: 1px solid ${(props) => props.theme.borderPrimary};
   box-shadow: ${(props) => props.theme.boxShadow};
-  border-radius: 6px 0 6px 6px;
-  & > * {
-    padding: 1vh 3vw;
+  transition: ease 0.2s all;
+  @media screen and (min-width: 600px) and (max-width: 900px) {
+    flex-basis: 40vw;
   }
-  @media screen and (min-width: 600px) {
-    padding: 2vh 2vw;
-    grid-template-columns: repeat(2, 1fr);
+  @media screen and (min-width: 900px) {
+    flex-basis: 30vw;
   }
-  @media screen and (min-width: 1200px) {
-    margin: 10vh 15vw;
-    padding: 2vh 6vw;
-    min-height: 66vh;
+  &:first-child {
+    margin-left: 4vw;
   }
-  p:nth-child(1) {
-    color:${props => props.theme.secondaryText}
+  &:last-child {
+    margin-right: 4vw;
+  }
+  &:hover,
+  &:focus {
+    box-shadow: ${(props) => props.theme.boxShadowHighlight};
+    transition: ease 0.2s all;
+    margin: 0 3vw;
+    transform: translateY(-2vh) scale(1.05);
+  }
+  &:hover ~ &,
+  &:focus ~ & {
+    transition: ease 0.2s all;
+  }
+  position: relative;
+
+  span {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    color: #f7f7f7;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.6);
+    border-radius: 1rem 0 0 0;
   }
 `;
 const BannerImage = styled(Img)`
-  height:25vh;
-`
+  height: 25vh;
+  border-radius: 1rem 1rem 0 0;
+  position:relative;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+`;
 
 const Projects = () => {
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
       {
         allSanityProject {
           nodes {
@@ -108,39 +146,39 @@ const Projects = () => {
           <li>Front-End</li>
           <li>Back-End</li>
         </ul>
-        {data.allSanityProject.nodes.map(
-          ({
-            brief,
-            type,
-            coverImage,
-            description,
-            githubURL,
-            id,
-            liveURL,
-            name,
-            otherImages,
-            technologies,
-          }) => (
-            <ProjectWrapper>
-                <ProjectCard>
+        <Cards>
+          {data.allSanityProject.nodes.map(
+            ({
+              brief,
+              type,
+              coverImage,
+              description,
+              githubURL,
+              id,
+              liveURL,
+              name,
+              otherImages,
+              technologies,
+            }) => (
+                <Card>
                   <BannerImage
                     fluid={coverImage.asset.fluid}
                     alt={brief}
                     style={{"object-fit":"cover"}}
                   />
-                  <p>{type}</p>
-                  <h2>{name}</h2>
+                  <span>{type}</span>
                   <p>{brief}</p>
-                  {/* <ul>
+                  <h2>{name}</h2>
+                  <ul>
                     <h6>Technologies</h6>
                     {technologies.map(title => (
                       <li>- {title}</li>
                     ))}
-                  </ul> */}
-                </ProjectCard>
-            </ProjectWrapper>
-          )
-        )}
+                  </ul>
+                </Card>
+            )
+          )}
+        </Cards>
       </ProjectsContainer>
     </Wrapper>
   );
