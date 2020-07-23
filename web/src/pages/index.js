@@ -1,30 +1,41 @@
 import React from "react"
-// import { graphql } from "gatsby"
 import get from "lodash/get"
 import Helmet from "react-helmet"
-// import styled from "styled-components"
+import styled from "styled-components"
 
 import Layout from "../components/layout"
 
-import Landing from "../components/homepage/home-landing"
-import About from "../components/homepage/home-about"
-import Projects from "../components/homepage/home-projects"
+import Landing from "../components/homepage/landing-home"
+import About from "../components/homepage/about"
+import Projects from "../components/homepage/projects"
+
+const Container = styled.div`
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  & > * {
+    border-bottom: 1px solid ${(props) => props.theme.borderPrimary};
+    z-index: 5;
+    scroll-snap-align: start;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 class RootIndex extends React.Component {
 
   render() {
     const siteTitle = get(this, "props.data.site.siteMetadata.title")
-    // const posts = get(this, "props.data.allContentfulBlogPost.edges")
 
     return (
       <Layout location={this.props.location}>
-        <div >
+        <Container >
           <Helmet title={siteTitle} />
-          {/* <Hero data={author.node} /> */}
           <Landing />
           <About />
           <Projects />
-        </div>
+        </Container>
       </Layout>
     );
   }

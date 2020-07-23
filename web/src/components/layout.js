@@ -67,6 +67,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const darkTheme = {
+  currentTheme: "Dark",
   text: "#f7f7f7",
   secondaryText: "#959cb1",
   background: "#16171b",
@@ -76,12 +77,15 @@ const darkTheme = {
   linksHover: "#376df9",
   borderPrimary: "white",
   boxShadow: "-13px 11px 10px -8px rgba(255,255,255,0.8)",
+  imageBoxShadow: "13px 11px 10px -8px white",
   boxShadowHighlight: "-13px 11px 10px -8px rgba(72, 191, 227,0.8)",
   textShadow: "1px 2px 1px rgba(0,0,0,0.6)",
-  landingBackground: "rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%",
+  landingBackground:
+    "rgba(22, 23, 27, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%",
   landingTextBackground: "rgba(0, 0, 0, 0.2)",
 };
 const lightTheme = {
+  currentTheme:"Light",
   text: "black",
   background: "#F9F9F9",
   secondaryBackground: "white",
@@ -90,6 +94,7 @@ const lightTheme = {
   linksHover: "#376df9",
   borderPrimary: "black",
   boxShadow: "-13px 11px 10px -8px rgba(0,0,0,0.8)",
+  imageBoxShadow: "13px 11px 10px -8px black",
   boxShadowHighlight: "-13px 11px 10px -8px rgba(105, 48, 195,0.8)",
   textShadow: "1px 2px 2px rgba(255,255,255,0.6)",
   landingBackground: "rgba(245,245,245, 1) 65%, rgba(128, 255, 219, 0.8) 70%, rgba(114, 239, 221, 1) 73%, rgba(100, 223, 223, 1) 76%, rgba(86, 207, 225, 1) 79%, rgba(72, 191, 227, 1) 82%, rgba(78, 168, 222, 1) 85%, rgba(83, 144, 217, 1) 88%, rgba(94, 96, 206, 1) 91%, rgba(105, 48, 195, 1) 94%, rgba(116, 0, 184, 1) 97%",
@@ -133,11 +138,11 @@ const PageLayout = ({ children }) => {
           <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
             <React.Fragment>
               <GlobalStyle />
-              <Navigation />
-              <Children>
+              <Children style={{"overflow":"hidden", "webkit-scrollbar":{"display":"none"}}}>
+                <Navigation />
                 {children}
+                <Footer />
               </Children>
-              <Footer />
               <ThemeToggle themeToggle={themeToggler} />
             </React.Fragment>
           </ThemeProvider>

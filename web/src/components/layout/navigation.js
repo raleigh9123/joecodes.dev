@@ -7,25 +7,30 @@ const NavContainer = styled.nav`
   position: fixed;
   z-index: 20;
   top: 0;
-  border-bottom: 1px solid ${props => props.theme.borderColor};
+  border-bottom: 1px solid ${(props) => props.theme.borderColor};
   width: 100vw;
   height: 10vh;
-  background: ${props => props.theme.background};
+  font-size:.9rem;
+  @media screen and (min-width: 900px) {
+    font-size:inherit;
+  }
+  background: ${(props) => props.theme.background};
   li {
     transition: 0.15s;
-    @media screen and (max-width: 900px) {
+    @media screen and (min-width: 900px) {
+      padding: 0 .5vw;
       margin: 0 0.25em;
     }
   }
   li:hover {
-    border-color: ${props => props.theme.linksHover};
+    border-color: ${(props) => props.theme.linksHover};
     transition: 0.25s ease-in all;
   }
   & > *:nth-child(1) {
     border: none;
   }
   a {
-    padding: 0 6px;
+    padding: 0 1vw;
   }
 `;
 const Navigation = styled.ul`
@@ -50,10 +55,13 @@ const Navigation = styled.ul`
   }
   @media screen and (min-width:600px) {
     li:nth-child(1) {
-      grid-column:1/2;
+      grid-column:3/4;
     }
   }
   @media screen and (min-width: 1000px) {
+    li:nth-child(1) {
+      grid-column:1/2;
+    }
     width:60vw;
     margin: 0 10vw;
   }

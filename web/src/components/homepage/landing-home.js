@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const LandingContainer = styled.div`
   display: grid;
-  border-bottom: 1px solid ${(props) => props.theme.borderPrimary};
   width: 100vw;
   height: 90vh;
   justify-items: center;
@@ -39,7 +38,7 @@ const LandingContainer = styled.div`
 `;
 
 const Landing = (props) => (
-  <LandingContainer className="container">
+  <LandingContainer>
     <p>joecodes.io</p>
     <h1>
       <span>Joseph</span>

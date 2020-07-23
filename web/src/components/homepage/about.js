@@ -4,9 +4,6 @@ import { useStaticQuery, graphql, Link} from "gatsby"
 import styled, { withTheme } from "styled-components"
 import Img from "gatsby-image"
 
-const Wrapper = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.borderPrimary};
-`
 const AboutContainer = styled.div`
   display: grid;
   grid-template-columns: auto;
@@ -15,7 +12,7 @@ const AboutContainer = styled.div`
   padding: 2vh 0;
   justify-items: center;
   align-content: center;
-  box-shadow: ${(props) => props.theme.boxShadow};
+  box-shadow: ${(props) => props.theme.boxShadowHighlight};
   border-radius:0 0 0 2px;
   & > * {
     padding: 1vh 3vw;
@@ -101,34 +98,49 @@ const About = () => {
   `);
 
   return (
-    <Wrapper>
+    <div>
       <AboutContainer>
         <ContentContainer>
           <h3>Empowering Your Business</h3>
-          <p>I'm a software-developer building full-stack web applications for businesses. My goal is to help clients take their platforms to the web to reach a global audience.</p>
+          <p>
+            I'm a software-developer building full-stack web applications for
+            businesses. My goal is to help clients take their platforms to the
+            web to reach a global audience.
+          </p>
           <div>
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/raleigh9123">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/raleigh9123"
+            >
               <p>GitHub</p>
             </a>
             {/* <a target="_blank" href="https://www.linkedin.com/in/joseph-butterfield-853aaa90/">
               <p>LinkedIn</p>
             </a> */}
-            <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/jo2tony">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/jo2tony"
+            >
               <p>Twitter</p>
             </a>
-            <Link to="/about"><p>About Me</p></Link>
+            <Link to="/about">
+              <p>About Me</p>
+            </Link>
           </div>
         </ContentContainer>
         <ImageContainer>
-          <p className="subline">Making the internet a more functional space.</p>
+          <p className="subline">
+            Making the internet a more functional space.
+          </p>
           <Img
             fluid={data.file.childImageSharp.fluid}
             alt="Joseph Butterfield Profile"
-            style={{ "object-fit": "cover" }}
           />
         </ImageContainer>
       </AboutContainer>
-    </Wrapper>
+    </div>
   );
 }
 
