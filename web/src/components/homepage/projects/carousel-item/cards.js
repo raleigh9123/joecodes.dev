@@ -1,29 +1,44 @@
 import React from 'react'
 import styled from 'styled-components'
-import { motion } from 'framer-motion'
 import Img from "gatsby-image";
 
-const CardWrapper = styled(motion.div)`
-  margin: inherit;
+const CardWrapper = styled.div`
+  /* margin: inherit; */
   position: relative;
-  flex: 0 0 75vw;
+  /* display:grid; */
+  /* grid-auto-flow:row; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* overflow:hidden; */
+  width: 75vw;
+  justify-self: stretch;
   @media screen and (min-width: 600px) and (max-width: 900px) {
-    flex: 0 0 50vw;
+    width: 50vw;
   }
   @media screen and (min-width: 900px) {
-    flex: 0 0 29vw;
+    width: 29vw;
   }
-  width: 100%;
   margin: 0 2vw;
-  scroll-snap-align:center;
+  scroll-snap-align: center;
+  &:not(.active) {
+    opacity: 0.5;
+    transition: ease 0.2s all;
+    cursor: pointer;
+  }
+  &.active {
+    & > div {
+      box-shadow: ${(props) => props.theme.boxShadowHighlight};
+      height: fit-content;
+    }
+    transition: ease 0.2s all;
+    transform: translateY(1vh) scale(1.05);
+  }
 `;
+
 const Card = styled.div`
-  /* position: absolute; */
-  /* /* margin: 0 2vw; */
+  height:100%;
   background-color: ${(props) => props.theme.secondaryBackground};
   border: 1px solid ${(props) => props.theme.borderPrimary};
   box-shadow: ${(props) => props.theme.boxShadow};
-  transition: ease 0.2s all;
   scroll-snap-align: center;
   border-radius: 1rem;
   & > *:not(:first-child) {
@@ -54,25 +69,7 @@ const BannerImage = styled(Img)`
   }
 `;
 
-const cardVariants = {
-  // Left Slide
-  0: {
-    opacity: 0.5,
-    transform: `scale(1)`,
-  },
-  // Active Slide
-  1: {
-    opacity: 1,
-    transform: `scale(1.05)`,
-  },
-  // Right Slide
-  2: {
-    opacity: 0.5,
-    transform: `scale(1)`,
-  },
-};
-
-const Cards = ({data, advanceSlide, activeIndex}) => {
+const Cards = ({data, incrementSlides, activeIndex}) => {
 
   return (
     <>
@@ -93,26 +90,27 @@ const Cards = ({data, advanceSlide, activeIndex}) => {
             index
           ) => (
               <CardWrapper
-              variants={cardVariants}
-              // index={`${slides[index]}`}
-              // animate={`${index == leftSlide ? leftSlide : index == activeIndex ? activeIndex : index == rightSlide && rightSlide}`}
-              key={id}>
-                <Card>
-                  <BannerImage
-                    fluid={coverImage.asset.fluid}
-                    alt={brief}
-                    style={{ "object-fit": "cover" }}
-                  />
-                  <span>{type}</span>
-                  <p>{brief}</p>
-                  <h2>{name}</h2>
-                  <ul>
-                    <h6>Technologies</h6>
-                    {technologies.map((title, index) => (
-                      <li key={`id-${index}`}>- {title}</li>
-                    ))}
-                  </ul>
-                </Card>
+                onClick={() => {
+                  incrementSlides(null, index);
+                }}
+                className={index == activeIndex ? "active" : ""}
+                key={id}>
+                  <Card>
+                    <BannerImage
+                      fluid={coverImage.asset.fluid}
+                      alt={brief}
+                      style={{ "objectFit": "cover" }}
+                    />
+                    <span>{type}</span>
+                    <p>{brief}</p>
+                    <h2>{name}</h2>
+                    <ul>
+                      <h6>Technologies</h6>
+                      {technologies.map((title, index) => (
+                        <li key={`id-${index}`}>- {title}</li>
+                      ))}
+                    </ul>
+                  </Card>
               </CardWrapper>
           )
         )}

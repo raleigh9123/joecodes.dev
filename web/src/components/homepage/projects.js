@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import styled, { withTheme } from "styled-components"
 import { useStaticQuery, graphql } from "gatsby";
-import { wrap } from "@popmotion/popcorn";
 
 import CardCarousel from './projects/card-carousel';
 
@@ -44,69 +43,45 @@ const ProjectsContainer = styled.div`
 
 
 const Projects = (props) => {
-  const data = useStaticQuery(graphql`
-    {
-      allSanityProject {
-        nodes {
-          description
-          brief
-          type
-          name
-          technologies
-          liveURL
-          githubURL
-          id
-          type
-          coverImage {
-            asset {
-              fluid {
-                aspectRatio
-                base64
-                src
-                srcSet
-                sizes
+    const data = useStaticQuery(graphql`
+      {
+        allSanityProject {
+          nodes {
+            description
+            brief
+            type
+            name
+            technologies
+            liveURL
+            githubURL
+            id
+            type
+            coverImage {
+              asset {
+                fluid {
+                  aspectRatio
+                  base64
+                  src
+                  srcSet
+                  sizes
+                }
               }
             }
-          }
-          otherImages {
-            asset {
-              fluid {
-                aspectRatio
-                base64
-                src
-                srcSet
-                sizes
+            otherImages {
+              asset {
+                fluid {
+                  aspectRatio
+                  base64
+                  src
+                  srcSet
+                  sizes
+                }
               }
             }
           }
         }
       }
-    }
-  `);
-
-    const clientViewPortSetInitialScroll = () => {
-      console.log(document.body.clientWidth);
-    }
-
-    useEffect (() => {
-      clientViewPortSetInitialScroll()
-      window.addEventListener("resize", clientViewPortSetInitialScroll)
-    })
-
-    // Calculate the number of slides // Demo = 3
-    const numSlides = data.allSanityProject.nodes.length;
-    //Wrapping wrap(0, 3, 3) returns 0
-    // useState save the active index and provide function to change active index
-    const [[currentScroll, activeIndex], setActiveSlide] = useState([450, 1]);
-
-    const incrementSlide = (slideDirection, selectedIndex) => {
-      setSlide(slideDirection, selectedIndex);
-    };
-
-    //Function will make the selected slide activeSlide and move shift all slides
-    const setSlide = (slideDirection) => {
-      const newActiveSlide = wrap(0, numSlides, activeIndex)
-    }
+    `);
 
     return (
       <ProjectsContainer>
@@ -117,11 +92,7 @@ const Projects = (props) => {
           <li>Back-End</li>
           <li>Full-Stack</li>
         </ul>
-        <CardCarousel
-          data={data.allSanityProject.nodes}
-          numSlides={numSlides}
-          activeIndex={activeIndex}
-        />
+        <CardCarousel data={data} />
       </ProjectsContainer>
     );
 }

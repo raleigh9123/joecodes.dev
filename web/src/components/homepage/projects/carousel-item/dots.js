@@ -45,18 +45,23 @@ const dotVariants = {
 }
 
 
-const Dots = ({data, activeIndex}) => {
+const Dots = ({ data, activeIndex, incrementSlides }) => {
   return (
     <Container>
-      {data.map((node, index) =>
-        index == activeIndex ? (
-          <Dot variants={dotVariants} initial={"1"} animate={"0"} key={index} />
-        ) : (
-          <Dot variants={dotVariants} initial={"0"} animate={"1"} key={index} />
-        )
-      )}
+      {data.map((node, index) => (
+        <Dot
+          onClick={() => {
+            incrementSlides(null, index);
+          }}
+          index={index}
+          variants={dotVariants}
+          initial={index == activeIndex ? "1" : "0"}
+          animate={index == activeIndex ? "0" : "1"}
+          key={index}
+        />
+      ))}
     </Container>
   );
-}
+};
 
 export default Dots
