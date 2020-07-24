@@ -39,7 +39,7 @@ const LandingContainer = styled.div`
 
 const Landing = (props) => (
   <LandingContainer>
-    <p>joecodes.io</p>
+    <p>joecodes.dev</p>
     <h1>
       <span>Joseph</span>
       <br />

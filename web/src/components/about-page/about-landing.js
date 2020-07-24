@@ -41,7 +41,7 @@ const Landing = () => {
       <p>joecodes.io</p>
       <h1>About Me</h1>
       <h4>Software Developer</h4>
-      <h4>Attribute</h4>
+      <h4>Amateur Athlete</h4>
       <h4>Portland Native</h4>
       <h6> — Reaching Digital Space — </h6>
     </Container>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { wrap } from "@popmotion/popcorn";
+import { wrap } from '@popmotion/popcorn'
 
 import Dots from './carousel-item/dots'
 import Cards from './carousel-item/cards'
@@ -46,27 +46,31 @@ const Prev = styled.div`
 `;
 const CarouselViewport = styled(motion.div)`
   width: 100vw;
-  padding: 5vh 0;
-
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: auto auto auto;
   justify-items: center;
+  padding: 5vh 0 3vh 0;
   @media screen and (max-width: 600px) {
-    & > :first-child {
-      margin-left: -66.5vw;
+    & > a:first-child {
+      margin-left: -68.5vw;
     }
-    & > :last-child {
-      margin-right: -66.5vw;
+    & > a:last-child {
+      margin-right: -68.5vw;
     }
   }
   @media screen and (min-width: 600px) and (max-width: 900px) {
-    & > :first-child {
-      margin-left: -27vw;
+    & > a:first-child {
+      margin-left: -31vw;
     }
-    & > :last-child {
-      margin-right: -27vw;
+    & > a:last-child {
+      margin-right: -31vw;
     }
+    padding: 5vh 0 8vh 0;
+  }
+  @media screen and (min-width: 900px) {
+    margin-left: -8vw;
+    padding: 5vh 0 7vh 0;
   }
 
   scroll-snap-type: x mandatory;
@@ -82,6 +86,10 @@ const CarouselViewport = styled(motion.div)`
 
   &::-webkit-scrollbar {
     display: none;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `;
 
@@ -111,7 +119,7 @@ const CardCarousel = ({data}) => {
     transform: {
       mobile: 79,
       tablet: 54,
-      desktop: 34,
+      desktop: 37,
     },
     device: null,
     position: 0,
@@ -121,11 +129,7 @@ const CardCarousel = ({data}) => {
 
   const findPosition = () => {
     let index = activeIndex - 1
-    console.log(index);
-
-
     let x = transform[device] * index
-    console.log(x);
     return x
   }
 
@@ -140,8 +144,6 @@ const CardCarousel = ({data}) => {
     if (initialRender) {
       let deviceType = setDeviceType()
       let newPosition = findPosition()
-      console.log('First Render fired and deviceType is: ' + deviceType + '. newPosition is: ' + newPosition);
-
       setState({...state, initialRender: false, device: deviceType, position: newPosition})
     }
     // TimeoutID
@@ -166,8 +168,6 @@ const CardCarousel = ({data}) => {
     // Wrapping wrap(0, 4, x) x = 0 or 3 will return 0 or 3, x = 4, returns 0
     // Special addition to ternary operator must allow a selectedSlide of index 0 to return 0 instead of return false.
     const newActiveSlide = wrap(0, numSlides, selectedSlide == 0 ? 0 : selectedSlide || activeIndex + slideDirection);
-    console.log(newActiveSlide);
-
     setState({...state, activeIndex: newActiveSlide})
   };
 

@@ -12,12 +12,12 @@ export default {
       type: "string",
     },
     {
-      title: "Project Brief",
-      name: "brief",
+      title: "Subline",
+      name: "subline",
       type: "string",
     },
     {
-      title: "Project Type",
+      title: "Development Type",
       name: "type",
       type: "array",
       of: [{ type: "string" }],
@@ -25,6 +25,7 @@ export default {
         list: [
           { title: "Front-End", value: "Front-End" },
           { title: "Back-End", value: "Back-End" },
+          { title: "Full-Stack", value: "Full-Stack" },
         ],
       },
     },
@@ -34,8 +35,19 @@ export default {
       type: "text",
     },
     {
+      title: "Technical Process",
+      name: "technical",
+      type: "text",
+    },
+    {
       title: "Technologies",
       name: "technologies",
+      type: "array",
+      of: [{ type: "string" }],
+    },
+    {
+      title: "Other Technologies",
+      name: "dependencies",
       type: "array",
       of: [{ type: "string" }],
     },
@@ -45,8 +57,8 @@ export default {
       type: "url",
     },
     {
-      title: "Live URL",
-      name: "liveURL",
+      title: "Demo URL",
+      name: "demoURL",
       type: "url",
     },
     {

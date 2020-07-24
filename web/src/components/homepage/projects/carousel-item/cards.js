@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Img from "gatsby-image";
+import Img from 'gatsby-image'
+import { Link } from 'gatsby'
 
 const CardWrapper = styled.div`
   /* margin: inherit; */
@@ -9,20 +10,21 @@ const CardWrapper = styled.div`
   /* grid-auto-flow:row; */
   /* grid-template-columns: 1fr 1fr 1fr; */
   /* overflow:hidden; */
-  width: 75vw;
+  width: 73vw;
   justify-self: stretch;
   @media screen and (min-width: 600px) and (max-width: 900px) {
-    width: 50vw;
+    width: 48vw;
   }
   @media screen and (min-width: 900px) {
-    width: 29vw;
+    width: 31vw;
   }
-  margin: 0 2vw;
+  margin: 0 3vw;
   scroll-snap-align: center;
+  cursor: pointer;
+
   &:not(.active) {
-    opacity: 0.5;
+    opacity: 0.3;
     transition: ease 0.2s all;
-    cursor: pointer;
   }
   &.active {
     & > div {
@@ -33,7 +35,6 @@ const CardWrapper = styled.div`
     transform: translateY(1vh) scale(1.05);
   }
 `;
-
 const Card = styled.div`
   height:100%;
   background-color: ${(props) => props.theme.secondaryBackground};
@@ -46,6 +47,7 @@ const Card = styled.div`
   }
   span {
     position: absolute;
+    font-weight:600;
     top: 0;
     width: 50%;
     color: #f7f7f7;
@@ -76,42 +78,48 @@ const Cards = ({data, incrementSlides, activeIndex}) => {
       {data.map(
           (
             {
-              brief,
+              subline,
               type,
               coverImage,
-              description,
               githubURL,
               id,
-              liveURL,
+              demoURL,
+              description,
+              technical,
               name,
               otherImages,
               technologies,
             },
             index
           ) => (
-              <CardWrapper
-                onClick={() => {
-                  incrementSlides(null, index);
-                }}
-                className={index == activeIndex ? "active" : ""}
-                key={id}>
-                  <Card>
-                    <BannerImage
-                      fluid={coverImage.asset.fluid}
-                      alt={brief}
-                      style={{ "objectFit": "cover" }}
-                    />
-                    <span>{type}</span>
-                    <p>{brief}</p>
-                    <h2>{name}</h2>
-                    <ul>
-                      <h6>Technologies</h6>
-                      {technologies.map((title, index) => (
-                        <li key={`id-${index}`}>- {title}</li>
-                      ))}
-                    </ul>
-                  </Card>
-              </CardWrapper>
+              <Link>
+                <CardWrapper
+                  onClick={() => {
+                    incrementSlides(null, index);
+                  }}
+                  className={index == activeIndex ? "active" : ""}
+                  key={id}>
+                    <Card>
+                      <BannerImage
+                        fluid={coverImage.asset.fluid}
+                        alt={subline}
+                        style={{ "objectFit": "cover" }}
+                      />
+                      <span>{type}</span>
+                      <p>{subline}</p>
+                      <h2>{name}</h2>
+                      <ul>
+                        <h6>Technologies</h6>
+                        {technologies.map((title, index) => {
+                          if(index == 0 || index == 1 || index == 2) {
+                            return (
+                              <li key={`id-${index}`}>- {title}</li>
+                            )
+                        }})}
+                      </ul>
+                    </Card>
+                </CardWrapper>
+              </ Link>
           )
         )}
         <CardWrapper />

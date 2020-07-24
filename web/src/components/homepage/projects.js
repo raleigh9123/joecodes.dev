@@ -48,12 +48,12 @@ const Projects = (props) => {
         allSanityProject {
           nodes {
             description
-            brief
+            subline
             type
             name
             technologies
-            liveURL
             githubURL
+            demoURL
             id
             type
             coverImage {
