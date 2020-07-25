@@ -56,6 +56,9 @@ const Projects = (props) => {
             demoURL
             id
             type
+            slug {
+              current
+            }
             coverImage {
               asset {
                 fluid {

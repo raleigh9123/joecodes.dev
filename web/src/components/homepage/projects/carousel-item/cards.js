@@ -13,7 +13,7 @@ const CardWrapper = styled.div`
   width: 73vw;
   justify-self: stretch;
   @media screen and (min-width: 600px) and (max-width: 900px) {
-    width: 48vw;
+    width: 46vw;
   }
   @media screen and (min-width: 900px) {
     width: 31vw;
@@ -76,55 +76,55 @@ const Cards = ({data, incrementSlides, activeIndex}) => {
   return (
     <>
       {data.map(
-          (
-            {
-              subline,
-              type,
-              coverImage,
-              githubURL,
-              id,
-              demoURL,
-              description,
-              technical,
-              name,
-              otherImages,
-              technologies,
-            },
-            index
-          ) => (
-              <Link>
-                <CardWrapper
-                  onClick={() => {
-                    incrementSlides(null, index);
-                  }}
-                  className={index == activeIndex ? "active" : ""}
-                  key={id}>
-                    <Card>
-                      <BannerImage
-                        fluid={coverImage.asset.fluid}
-                        alt={subline}
-                        style={{ "objectFit": "cover" }}
-                      />
-                      <span>{type}</span>
-                      <p>{subline}</p>
-                      <h2>{name}</h2>
-                      <ul>
-                        <h6>Technologies</h6>
-                        {technologies.map((title, index) => {
-                          if(index == 0 || index == 1 || index == 2) {
-                            return (
-                              <li key={`id-${index}`}>- {title}</li>
-                            )
-                        }})}
-                      </ul>
-                    </Card>
-                </CardWrapper>
-              </ Link>
-          )
-        )}
-        <CardWrapper />
+        (
+          {
+            subline,
+            type,
+            coverImage,
+            githubURL,
+            id,
+            demoURL,
+            description,
+            technical,
+            name,
+            slug,
+            otherImages,
+            technologies,
+          },
+          index
+        ) => (
+          <Link key={id} to={`/projects/${slug.current}`}>
+            <CardWrapper
+              onClick={() => {
+                incrementSlides(null, index);
+              }}
+              className={index == activeIndex ? "active" : ""}
+            >
+              <Card>
+                <BannerImage
+                  fluid={coverImage.asset.fluid}
+                  alt={subline}
+                  style={{ objectFit: "cover" }}
+                />
+                <span>{type}</span>
+                <p>{subline}</p>
+                <h2>{name}</h2>
+                <ul>
+                  <h6>Technologies</h6>
+                  {technologies.map((title, index) => {
+                    if (index == 0 || index == 1 || index == 2) {
+                      return <li key={`id-${index}`}>- {title}</li>;
+                    }
+                  })}
+                </ul>
+              </Card>
+            </CardWrapper>
+          </Link>
+        )
+      )}
+      <CardWrapper />
     </>
-  )
+  );
 }
 
 export default Cards

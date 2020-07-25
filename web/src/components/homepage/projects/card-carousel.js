@@ -89,7 +89,10 @@ const CarouselViewport = styled(motion.div)`
   }
   a {
     text-decoration: none;
-    color: inherit;
+    color: inherit!important;
+  }
+  a:hover {
+    color: inherit!important;
   }
 `;
 

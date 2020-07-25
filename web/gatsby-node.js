@@ -1,42 +1,69 @@
-// const Promise = require('bluebird')
-// const path = require('path')
+exports.createPages = async ({graphql, actions}) => {
+  const { createPage } = actions
 
-// exports.createPages = ({ graphql, actions }) => {
-//   const { createPage } = actions
+  const result = await graphql(`
+    {
+      allSanityProject(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+            subline
+            technical
+            technologies
+            type
+            name
+            githubURL
+            description
+            dependencies
+            demoURL
+            coverImage {
+              asset {
+                fluid {
+                  aspectRatio
+                  base64
+                  sizes
+                  src
+                  srcSet
+                }
+              }
+            }
+            otherImages {
+              asset {
+                fluid {
+                  aspectRatio
+                  base64
+                  sizes
+                  src
+                  srcSet
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
 
-//   return new Promise((resolve, reject) => {
-//     const blogPost = path.resolve('./src/templates/blog-post.js')
-//     resolve(
-//       graphql(
-//         `
-//           {
-//             allContentfulBlogPost {
-//               edges {
-//                 node {
-//                   title
-//                   slug
-//                 }
-//               }
-//             }
-//           }
-//         `
-//       ).then(result => {
-//         if (result.errors) {
-//           console.log(result.errors)
-//           reject(result.errors)
-//         }
 
-//         const posts = result.data.allContentfulBlogPost.edges
-//         posts.forEach(post => {
-//           createPage({
-//             path: `/blog/${post.node.slug}/`,
-//             component: blogPost,
-//             context: {
-//               slug: post.node.slug,
-//             },
-//           })
-//         })
-//       })
-//     )
-//   })
-// }
+  if (result.errors) {
+    throw result.errors;
+  }
+
+  const projectEdges = result.data.allSanityProject.edges || []
+
+  projectEdges.forEach(({node}) => {
+
+    const id = node.id
+    const slug = node.slug.current
+    const path = `/projects/${slug}/`;
+
+    createPage({
+      path,
+      component: require.resolve("./src/templates/project.js"),
+      context: { id },
+    });
+  });
+}

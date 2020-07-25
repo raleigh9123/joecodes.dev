@@ -12,6 +12,16 @@ export default {
       type: "string",
     },
     {
+      title: "Slug",
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "name",
+        slugify: (input) =>
+          input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
+      },
+    },
+    {
       title: "Subline",
       name: "subline",
       type: "string",
